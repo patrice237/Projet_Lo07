@@ -30,6 +30,10 @@ switch ($action) {
     case "producteurReadAll" :
         ControllerClient::$action();
         break;
+    case "truc" :
+        $action = "patrimoineAccueil";
+        ControllerAdministrateur::$action();
+        break;
 
 // Tache par défaut
     default:
