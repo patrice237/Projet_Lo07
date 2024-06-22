@@ -1,0 +1,58 @@
+
+<!-- ----- début fragmentPatrimoineAdministrateurMenu -->
+
+<nav class="navbar navbar-expand-lg bg-success fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="router2.php?action=PatrimoineAccueil">MBANGUE-TAKAM|||</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Banques</a>
+          <ul class="dropdown-menu">
+              
+            <li><a class="dropdown-item" href="router2.php?action=banqueReadAll">Liste des banques</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=banqueAdd">Ajouter  une banque</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=compteReadAllBanque">Liste des comptes d'une banque</a></li>
+          </ul>
+          
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Clients</a>
+          <ul class="dropdown-menu">
+              
+            <li><a class="dropdown-item" href="router2.php?action=producteurReadAll">Liste des clients</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=producteurReadId">Liste des administrateurs</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=producteurCreate">Liste des comptes</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=producteurCreate">Liste des résidences</a></li>
+            
+          </ul>
+        </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router2.php?action=producteurReadAll">Innovation 1</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=producteurReadAll">Innovation 2</a></li>
+
+          </ul>
+        </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Se connecter</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router2.php?action=vinReadAll">Login</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=vinReadId">S'inscrire</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=vinCreate">Deconnexion</a></li> 
+          </ul>
+        </li>
+        
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+
+<!-- ----- fin fragmentPatrimoineAdministrateurMenu -->
+
