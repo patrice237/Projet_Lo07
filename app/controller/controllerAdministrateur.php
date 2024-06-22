@@ -9,7 +9,7 @@ class ControllerAdministrateur {
   include 'config.php';
   $vue = $root . '/app/view/viewPatrimoineAccueil.php';
   if (DEBUG)
-   echo ("ControllerVin : caveAccueil : vue = $vue");
+   echo ("ControllerAdministrateur : patrimoineAccueil : vue = $vue");
   require ($vue);
  }
 

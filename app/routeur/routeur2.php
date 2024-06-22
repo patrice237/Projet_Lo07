@@ -1,8 +1,8 @@
 
 <!-- ----- debut Router2 -->
 <?php
-require ('../controller/ControllerAdministrateur.php');
-require ('../controller/ControllerClient.php');
+require ('../controller/controllerAdministrateur.php');
+require ('../controller/controllerClient.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
