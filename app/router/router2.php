@@ -1,7 +1,6 @@
 
 <!-- ----- debut Router2 -->
 <?php
-require ('../controller/controllerAdministrateur.php');
 require ('../controller/controllerClient.php');
 
 // --- récupération de l'action passée dans l'URL
@@ -22,19 +21,26 @@ $args=$param;
 
 // --- Liste des méthodes autorisées
 switch ($action) {
-    case "compteReadAll" :
-    case "vinReadOne" :
+    
+    
+    case "banqueReadAll" :
+    case "ReadBanque" :
+    case "ReadAllCompteBanque" : 
         ControllerAdministrateur::$action();
         break;
         
-    case "producteurReadAll" :
+    case "compteReadAll" :
+    case "compteAdd" :
+    case "compteAdded" :
+    case "ResidenceReadAll" :
+    case "BilanAll" :
         ControllerClient::$action();
         break;
 
 // Tache par défaut
     default:
-        $action = "patrimoineAccueil";
-        ControllerAdministrateur::$action();
+        $action = "viewAccueilClient";
+        ControllerClient::$action();  //choisir ControllerAdministrateur::$action();
 }
 
 ?>

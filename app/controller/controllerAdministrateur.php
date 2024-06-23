@@ -1,7 +1,7 @@
 
 <!-- ----- debut ControllerVin -->
 <?php
-// require_once '../model/ModelAdministrateur.php';
+ require_once '../model/ModelBanque.php';
 
 class ControllerAdministrateur {
  // --- page d'acceuil
@@ -14,42 +14,42 @@ class ControllerAdministrateur {
  }
 
  // --- Liste des vins
- public static function vinReadAll() {
-  $results = ModelVin::getAll();
+ public static function banqueReadAll() {
+  $results = ModelBanque::getAll();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/vin/viewAll.php';
+  $vue = $root . '/app/view/Administrateur/viewbanqueReadAll.php';
   if (DEBUG)
-   echo ("ControllerVin : vinReadAll : vue = $vue");
+   echo ("ControllerAdministrateur : banqueReadAll : vue = $vue");
   require ($vue);
  }
 
  // Affiche un formulaire pour sélectionner un id qui existe
- public static function vinReadId($args) {
+ public static function ReadBanque() {
      
   
   // if(DEBUG) echo ("ControllerVin : vinReadId : begin </br>");
-  $results = ModelVin::getAllId();
+  $results = ModelBanque::getAllBanque();
 
   // ----- Construction chemin de la vue
   
-  $target=$args['target'];
+  //$target=$args['target'];
    //if(DEBUG) echo ("ControllerVin : vinReadId : target=$target </br>");
    
   include 'config.php';
   
-  $vue = $root . '/app/view/vin/viewId.php';
+  $vue = $root . '/app/view/Administrateur/viewAllBanque.php';
   require ($vue);
  }
 
  // Affiche un vin particulier (id)
- public static function vinReadOne() {
-  $vin_id = $_GET['id'];
-  $results = ModelVin::getOne($vin_id);
-
+ public static function ReadAllCompteBanque() {
+  $banque_label = $_GET['label'];
+  $results = ModelBanque::getOne($banque_label);
   // ----- Construction chemin de la vue
+  
   include 'config.php';
-  $vue = $root . '/app/view/vin/viewAll.php';
+  $vue = $root . '/app/view/Administrateur/viewAllCompteBanque.php';
   require ($vue);
  }
 
