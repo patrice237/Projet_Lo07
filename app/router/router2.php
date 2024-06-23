@@ -23,7 +23,12 @@ $args=$param;
 // --- Liste des méthodes autorisées
 switch ($action) {
     case "compteReadAll" :
-    case "vinReadOne" :
+    case "banqueAdd" :
+    case "banqueCreated":
+    case "clientReadAll":
+    case "administrateurReadAll":
+    case "compteReadAll":
+    case "residenceReadAll":
         ControllerAdministrateur::$action();
         break;
         

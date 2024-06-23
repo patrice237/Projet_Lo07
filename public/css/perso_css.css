@@ -8,6 +8,9 @@ body {
     background-color: greenyellow;
     width: 60%;
 }
+h2{
+    color: red;
+}
 
 .jumbotron {
   background-color:plum;
