@@ -7,7 +7,9 @@ require_once '../model/ModelCompte.php';
 require_once '../model/ModelResidence.php';
 
 class ControllerAdministrateur {
- // --- page d'acceuil
+ 
+    
+   // --- page d'acceuil
  public static function patrimoineAccueil() {
   include 'config.php';
   $vue = $root . '/app/view/viewPatrimoineAccueil.php';
@@ -15,15 +17,25 @@ class ControllerAdministrateur {
    echo ("ControllerAdministrateur : patrimoineAccueil : vue = $vue");
   require ($vue);
  }
-
- // --- Liste des vins
+  
+  public static function banqueReadAll() {
+  $results = ModelBanque::getAll();
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/Administrateur/viewbanqueReadAll.php';
+  if (DEBUG)
+   echo ("ControllerAdministrateur : banqueReadAll : vue = $vue");
+  require ($vue);
+ }
+    
+ // --- Liste des clients
  public static function clientReadAll() {
   $results = ModelPersonne::getAllClient();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/banque/viewAllPersonne.php';
+  $vue = $root . '/app/view/Administrateur/viewAllPersonne.php';
   if (DEBUG)
-   echo ("ControllerAdministrateur : vinReadAllPersonne : vue = $vue");
+   echo ("ControllerAdministrateur : clientReadAll : vue = $vue");
   require ($vue);
  }
  
@@ -31,9 +43,9 @@ class ControllerAdministrateur {
   $results = ModelPersonne::getAllAdmin();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/banque/viewAllPersonne.php';
+  $vue = $root . '/app/view/Administrateur/viewAllPersonne.php';
   if (DEBUG)
-   echo ("ControllerAdministrateur : vinReadAllPersonne : vue = $vue");
+   echo ("ControllerAdministrateur : administrateurReadAll : vue = $vue");
   require ($vue);
  }
  
@@ -41,57 +53,50 @@ class ControllerAdministrateur {
    $results = ModelCompte::getAllCompte();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/banque/viewAllCompte.php';
+  $vue = $root . '/app/view/Administrateur/viewAllCompte.php';
   if (DEBUG)
-   echo ("ControllerAdministrateur : vinReadAllCompte : vue = $vue");
+   echo ("ControllerAdministrateur : compteReadAll : vue = $vue");
   require ($vue);
      
  }
+  public static function ReadBanque() {
+     
+
+  $results = ModelBanque::getAllBanque();
+
+  include 'config.php';
+  
+  $vue = $root . '/app/view/Administrateur/viewAllBanque.php';
+  require ($vue);
+  
+ }
+  public static function ReadAllCompteBanque() {
+  $banque_label = $_GET['label'];
+  $results = ModelBanque::getOne($banque_label);
+  // ----- Construction chemin de la vue
+  
+  include 'config.php';
+  $vue = $root . '/app/view/Administrateur/viewAllCompteBanque.php';
+  require ($vue);
+ }
 
   public static function residenceReadAll() {
+      
    $results = ModelResidence::getAllResidence();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/banque/viewAllResidence.php';
+  $vue = $root . '/app/view/Administrateur/viewAllResidence.php';
   if (DEBUG)
    echo ("ControllerAdministrateur : residenceReadAllResidence : vue = $vue");
   require ($vue);                   
      
- }
- // Affiche un formulaire pour sélectionner un id qui existe
- public static function vinReadId($args) {
-     
-  
-  // if(DEBUG) echo ("ControllerVin : vinReadId : begin </br>");
-  $results = ModelVin::getAllId();
-
-  // ----- Construction chemin de la vue
-  
-  $target=$args['target'];
-   //if(DEBUG) echo ("ControllerVin : vinReadId : target=$target </br>");
-   
-  include 'config.php';
-  
-  $vue = $root . '/app/view/vin/viewId.php';
-  require ($vue);
- }
-
- // Affiche un vin particulier (id)
- public static function vinReadOne() {
-  $vin_id = $_GET['id'];
-  $results = ModelVin::getOne($vin_id);
-
-  // ----- Construction chemin de la vue
-  include 'config.php';
-  $vue = $root . '/app/view/vin/viewAll.php';
-  require ($vue);
  }
 
  // Affiche le formulaire de creation d'un vin
  public static function banqueAdd() {
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/banque/viewInsert.php';
+  $vue = $root . '/app/view/Administrateur/viewInsert.php';
   require ($vue);
  }
 
@@ -106,7 +111,7 @@ public static function banqueCreated() {
   if (empty($labelBanque) || empty($pays)) {
     // Rediriger vers une page d'erreur si l'un des champs est vide
     include 'config.php';
-    $vue = $root . '/app/view/banque/viewError.php'; // Assurez-vous d'avoir une vue d'erreur à cet emplacement
+    $vue = $root . '/app/view/Administrateur/viewError.php'; // Assurez-vous d'avoir une vue d'erreur à cet emplacement
     require($vue);
   } else {
     // Insertion des données si les champs ne sont pas vides
@@ -114,23 +119,13 @@ public static function banqueCreated() {
 
     // Construction du chemin de la vue
     include 'config.php';
-    $vue = $root . '/app/view/banque/viewInserted.php';
+    $vue = $root . '/app/view/Administrateur/viewInserted.php';
     require($vue);
   }
 }
 
 
- public static function vinDeleted() {
-     
-  $vin_id = $_GET['id'];
-  $results = ModelVin::delete($vin_id);
 
-  // ----- Construction chemin de la vue
-  include 'config.php';
-  $vue = $root . '/app/view/vin/viewDeleted.php';
-  require ($vue);
-     
- }
  
 }
 ?>

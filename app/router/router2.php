@@ -22,8 +22,10 @@ $args=$param;
 
 // --- Liste des méthodes autorisées
 switch ($action) {
-    case "compteReadAll" :
+    case "banqueReadAll" :
+    case "ReadBanque":
     case "banqueAdd" :
+    case "ReadAllCompteBanque":
     case "banqueCreated":
     case "clientReadAll":
     case "administrateurReadAll":
@@ -32,18 +34,19 @@ switch ($action) {
         ControllerAdministrateur::$action();
         break;
         
-    case "producteurReadAll" :
+    case "compteReadAllC" :
+    case "compteAdd":
+    case "compteAdded":
+    case "compteTransfert":
+    case "ResidenceReadAll":
+    case "BilanAll":
         ControllerClient::$action();
-        break;
-    case "truc" :
-        $action = "patrimoineAccueil";
-        ControllerAdministrateur::$action();
         break;
 
 // Tache par défaut
     default:
-        $action = "patrimoineAccueil";
-        ControllerAdministrateur::$action();
+        $action = "accueilClient";
+        ControllerClient::$action();
 }
 
 ?>
