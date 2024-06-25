@@ -2,6 +2,7 @@
 <!-- ----- debut Router2 -->
 <?php
 require ('../controller/controllerClient.php');
+require ('../controller/controllerAdministrateur.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -34,14 +35,17 @@ switch ($action) {
     case "compteAdded" :
     case "ResidenceReadAll" :
     case "BilanAll" :
+    case "ReadResidence":
+    case "buyResidence":
+    case "validationPaye":
         ControllerClient::$action();
         break;
 
 // Tache par défaut
     default:
-        $action = "viewAccueilClient";
-        ControllerClient::$action();  //choisir ControllerAdministrateur::$action();
-}
+        $action = "AccueilClient";
+        ControllerClient::$action();  //$action = "patrimoineAccueil"; choisir ControllerAdministrateur::$action();
+}               //$action = "viewAccueilClient"; ControllerClient::$action();
 
 ?>
 <!-- ----- Fin Router2 -->

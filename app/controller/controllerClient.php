@@ -7,11 +7,11 @@
 
 class ControllerClient {
  // --- page d'acceuil
- public static function viewAccueilClient() {
+ public static function AccueilClient() {
   include 'config.php';
   $vue = $root . '/app/view/viewAccueilClient.php';
   if (DEBUG)
-   echo ("ControllerClient : viewAccueilClient : vue = $vue");
+   echo ("ControllerClient : AccueilClient : vue = $vue");
   require ($vue);
  }
 
@@ -77,16 +77,35 @@ class ControllerClient {
   require ($vue);
  }
  
-
- 
- public static function vinDeleted() {
-     
-  $vin_id = $_GET['id'];
-  $results = ModelVin::delete($vin_id);
-
+public static function ReadResidence() {
+  $results = ModelResidence::getResidence();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/vin/viewDeleted.php';
+  $vue = $root . '/app/view/Client/viewReadResidence.php';
+  if (DEBUG)
+   echo ("ControllerClient : BilanAll : vue = $vue");
+  require ($vue);
+ }
+ 
+public static function buyResidence() {
+  $residence_id = $_GET['id'];
+  $results = ModelResidence::getbuy($residence_id);
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/Client/viewbuyResidence.php';
+  if (DEBUG)
+   echo ("ControllerClient : BilanAll : vue = $vue");
+  require ($vue);
+ }
+ 
+ public static function validationPaye() {
+     
+  $results = ModelResidence::insert(
+      htmlspecialchars($_GET['compte_a']??''), htmlspecialchars($_GET['compte_v']??''), htmlspecialchars($_GET['prix'])
+  );
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/Client/viewValidationPaye.php';
   require ($vue);
      
  }

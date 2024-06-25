@@ -31,11 +31,7 @@ class ControllerAdministrateur {
   // if(DEBUG) echo ("ControllerVin : vinReadId : begin </br>");
   $results = ModelBanque::getAllBanque();
 
-  // ----- Construction chemin de la vue
-  
-  //$target=$args['target'];
-   //if(DEBUG) echo ("ControllerVin : vinReadId : target=$target </br>");
-   
+
   include 'config.php';
   
   $vue = $root . '/app/view/Administrateur/viewAllBanque.php';
