@@ -1,34 +1,41 @@
+<!-- ----- debut controllerConnexion -->
 <?php
 
 require_once '../model/ModelPersonne.php';
 
-class controllerConnexion{
+class controllerConnexion {
     
-  public static function accueil() {
-  include 'config.php';
-  $vue = $root . '/app/view/viewConnexion.php';
-  if (DEBUG)
-   echo ("ControllerClient : viewAccueilClient : vue = $vue");
-  require ($vue);
- }
+    // Page d'accueil pour la connexion
+    public static function accueil() {
+        include 'config.php';
+        $vue = $root . '/app/view/viewConnexion.php';
+        if (DEBUG) {
+            echo ("controllerConnexion : accueil : vue = $vue");
+        }
+        require($vue);
+    }
+
+    // Formulaire de connexion
     public static function loginForm() {
-         include 'config.php';
-         $vue = $root . '/app/view/Connexion/viewLoginForm.php';
-         if (DEBUG)
-          echo ("ControllerAdministrateur : patrimoineAccueil : vue = $vue");
-         require ($vue);
-        
-        
+        include 'config.php';
+        $vue = $root . '/app/view/Connexion/viewLoginForm.php';
+        if (DEBUG) {
+            echo ("controllerConnexion : loginForm : vue = $vue");
+        }
+        require($vue);
     }
-        public static function inscriptionForm() {
-         include 'config.php';
-         $vue = $root . '/app/view/Connexion/viewInscriptionForm.php';
-         if (DEBUG)
-          echo ("ControllerAdministrateur : patrimoineAccueil : vue = $vue");
-         require ($vue);
-        
-        
+
+    // Formulaire d'inscription
+    public static function inscriptionForm() {
+        include 'config.php';
+        $vue = $root . '/app/view/Connexion/viewInscriptionForm.php';
+        if (DEBUG) {
+            echo ("controllerConnexion : inscriptionForm : vue = $vue");
+        }
+        require($vue);
     }
+
+    // Vérification du login
     public static function testLogin() {
         // Récupérer les valeurs du formulaire
         $login = $_GET['login'];
@@ -39,7 +46,7 @@ class controllerConnexion{
             $error = "Veuillez fournir à la fois le login et le mot de passe.";
             include 'config.php';
             $vue = $root . '/app/view/viewConnexion.php';
-            require ($vue);
+            require($vue);
             exit();
         }
 
@@ -51,32 +58,31 @@ class controllerConnexion{
             $_SESSION['login'] = $login; // Exemple : à adapter selon vos besoins
             $_SESSION['id'] = $results['id']; // Supposons que vous avez un champ 'id' dans votre modèle
             $_SESSION['statut'] = $results['statut']; // Supposons un champ 'statut' dans votre modèle
-            $_SESSION['nom']=$results['nom'];
-            $_SESSION['prenom']=$results['prenom'];
+            $_SESSION['nom'] = $results['nom'];
+            $_SESSION['prenom'] = $results['prenom'];
+
             // Redirection en fonction du statut
+            include 'config.php';
             if ($_SESSION['statut'] == 0) {
-                include 'config.php';
                 $vue = $root . '/app/view/viewPatrimoineAccueil.php';
             } else {
-                include 'config.php';
                 $vue = $root . '/app/view/viewAccueilClient.php';
             }
 
-            include 'config.php';
             if (DEBUG) {
-                echo ("ControllerConnexion : Redirection vers $vue");
+                echo ("controllerConnexion : Redirection vers $vue");
             }
-            require ($vue);
+            require($vue);
         } else {
             // Échec de la connexion
             $error = "Login ou mot de passe incorrect.";
             include 'config.php';
             $vue = $root . '/app/view/viewConnexion.php';
-            require ($vue);
+            require($vue);
         }
     }
 
-    
+    // Vérification de l'inscription
     public static function testInscription() {
         // Récupérer les valeurs du formulaire
         $nom = $_GET['nom'];
@@ -89,24 +95,20 @@ class controllerConnexion{
             $error = "Veuillez remplir tout le formulaire.";
             include 'config.php';
             $vue = $root . '/app/view/viewConnexion.php';
-            require ($vue);
+            require($vue);
             exit();
         }
 
-        // Appel au modèle pour vérifier les identifiants
-        $results = ModelPersonne::create($nom,$prenom,$login, $password);
+        // Appel au modèle pour créer un nouvel utilisateur
+        $results = ModelPersonne::create($nom, $prenom, $login, $password);
 
-        if ($results==1) {
-           include 'config.php';
+        if ($results == 1) {
+            include 'config.php';
             $vue = $root . '/app/view/viewConnexion.php';
-            require ($vue);
+            require($vue);
         }
     }
-    
-    
-    
 }
 
-
-
 ?>
+<!-- ----- fin controllerConnexion -->

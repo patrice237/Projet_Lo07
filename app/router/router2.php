@@ -1,31 +1,28 @@
-
 <!-- ----- debut Router2 -->
 <?php
+// Inclusion des contrôleurs nécessaires
 require ('../controller/ControllerAdministrateur.php');
 require ('../controller/ControllerClient.php');
 require ('../controller/ControllerConnexion.php');
 
-// --- récupération de l'action passée dans l'URL
+// Récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
 
-// fonction parse_str permet de construire 
-// une table de hachage (clé + valeur) 
+// La fonction parse_str permet de construire une table de hachage (clé + valeur) à partir de la chaîne de requête
 parse_str($query_string, $param);
 
-// --- $action contient le nom de la méthode statique recherchée
+// $action contient le nom de la méthode statique recherchée
 $action = htmlspecialchars($param["action"]);
+unset($param['action']);  // Suppression de l'action des paramètres pour récupérer les arguments restants
 
-$action=$param['action'];
+$args = $param;  // Arguments restants de la requête
 
-unset($param['action']);
-
-$args=$param;
-
-// --- Liste des méthodes autorisées
+// Liste des méthodes autorisées pour chaque contrôleur
 switch ($action) {
-    case "banqueReadAll" :
+    // Actions pour l'administrateur
+    case "banqueReadAll":
     case "ReadBanque":
-    case "banqueAdd" :
+    case "banqueAdd":
     case "ReadAllCompteBanque":
     case "banqueCreated":
     case "clientReadAll":
@@ -35,13 +32,17 @@ switch ($action) {
     case "patrimoineAccueil":
         ControllerAdministrateur::$action();
         break;
+    
+    // Actions pour la connexion
     case "loginForm":
     case "inscriptionForm":
     case "testLogin":
     case "testInscription":
-        controllerConnexion::$action();
+        ControllerConnexion::$action();
         break;
-    case "compteReadAllC" :
+
+    // Actions pour le client
+    case "compteReadAllC":
     case "compteAdd":
     case "compteAdded":
     case "compteTransfert":
@@ -56,12 +57,11 @@ switch ($action) {
         ControllerClient::$action();
         break;
 
-// Tache par défaut
+    // Action par défaut si aucune action n'est spécifiée
     default:
         $action = "accueil";
-        controllerConnexion::$action();
+        ControllerConnexion::$action();
 }
 
 ?>
 <!-- ----- Fin Router2 -->
-
