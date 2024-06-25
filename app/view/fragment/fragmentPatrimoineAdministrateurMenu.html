@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg bg-success fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="router2.php?action=PatrimoineAccueil">MBANGUE-TAKAM|||</a>
+    <a class="navbar-brand" href="router2.php?action=patrimoineAccueil">MBANGUE-TAKAM | ADMINISTRATEUR | <?php echo $_SESSION['nom'] . ' ' . $_SESSION['prenom']; ?> |</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,9 +42,7 @@
          <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Se connecter</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router2.php?action=vinReadAll">Login</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=vinReadId">S'inscrire</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=vinCreate">Deconnexion</a></li> 
+            <li><a class="dropdown-item" href="router2.php?action=truc">Deconnexion</a></li> 
           </ul>
         </li>
         

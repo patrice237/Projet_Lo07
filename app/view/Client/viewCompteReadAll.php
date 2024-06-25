@@ -12,7 +12,7 @@ require ($root . '/app/view/fragment/fragmentPatrimoineHeader.html');
       include $root . '/app/view/fragment/fragmentPatrimoineJumbotron.html';
       ?>
       
-      <label for="id">Liste des comptes </label> 
+      <label for="id"> </label> 
     <table class = "table table-striped table-bordered">
       <thead>
         <tr>

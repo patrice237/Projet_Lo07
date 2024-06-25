@@ -1,11 +1,13 @@
 <?php
 
+require_once 'Model.php';
+
 class ModelCompte{
     private $id, $label, $montant, $banque_id, $personne_id;
     
     public function __construct($id=NULL, $label=NULL, $montant=NULL, $banque_id=null, $personne_id=NULL) {
        
-        if(!is_null($id)){
+        if(is_null($id)){
         $this->id = $id;
         $this->label = $label;
         $this->montant = $montant;
@@ -57,7 +59,23 @@ class ModelCompte{
     public static function getAll() {
      try {
       $database = Model::getInstance();
-      $query = "SELECT p.prenom,p.nom,c.label  FROM `personne` as p, `compte` as c WHERE p.id=c.personne_id";
+      $query = "SELECT p.prenom,p.nom,c.label  FROM `personne` as p, `compte` as c WHERE c.personne_id= p.id  AND personne_id= :id";
+      $statement = $database->prepare($query);
+      $statement->execute([
+               'id' => $_SESSION['id']
+             ]);
+      //$statement->execute();
+      $results = $statement->fetchAll();
+      return $results;
+     } catch (PDOException $e) {
+      printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+      return NULL;
+     }
+    }
+    public static function getAllClient($id_client) {
+     try {
+      $database = Model::getInstance();
+      $query = "SELECT c.id, p.prenom,p.nom,c.label, c.montant  FROM `personne` as p, `compte` as c WHERE p.id=c.personne_id and p.id=$id_client";
       $statement = $database->prepare($query);
       $statement->execute();
       $results = $statement->fetchAll();
@@ -81,7 +99,44 @@ class ModelCompte{
         }
        }
        
-       public static function getOne($label) {
+   public static function getById($id) {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT * FROM compte WHERE id = :id";
+            $stmt = $database->prepare($query);
+
+            // Liaison directe du paramètre en utilisant un tableau associatif
+            $stmt->execute([':id' => $id]);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $compte = $stmt->fetch();
+
+            return $compte;
+        } catch (PDOException $e) {
+            echo 'Erreur: ' . $e->getMessage();
+            return null;
+        }
+    }
+
+    public static function update($id, $montant) {
+        try {
+            $pdo = Model::getInstance();
+            $stmt = $pdo->prepare('UPDATE compte SET montant = :montant WHERE id = :id');
+
+            // Conversion en float pour le montant
+            $montant = (float)$montant;
+
+            // Liaison directe des paramètres en utilisant un tableau associatif
+            $stmt->execute([
+                ':id' => $id,
+                ':montant' => $montant
+            ]);
+        } catch (PDOException $e) {
+            echo 'Erreur: ' . $e->getMessage();
+        }
+    }
+
+
+              public static function getOne($label) {
             try {
              $database = Model::getInstance();
              $query = "SELECT p.prenom,p.nom,b.label,c.label as lb,c.montant FROM `personne` as p, "
@@ -133,7 +188,7 @@ class ModelCompte{
                'label' => $label,
                'montant' => $montant,
                'banque' => $j,
-               'pers' => "1001"
+               'pers' => $_SESSION['id']
              ]);
              return $id;
             } catch (PDOException $e) {

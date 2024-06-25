@@ -24,15 +24,21 @@ require ($root . '/app/view/fragment/fragmentPatrimoineHeader.html');
       </thead>
       <tbody>
          <?php
+          $s=0;
+          $couleurFond = '#ccffcc';
           foreach ($results['compte'] as $element) {
-           printf("<tr><td>Compte</td><td>%s</td><td>%d</td><td></td></tr>",$element[0],
-                   $element[1]);
+               $s=$s+$element[1];
+         echo sprintf('<tr style="background-color: %s;"><td>Compte</td><td>%s</td><td>%d</td><td>%d</td></tr>',$couleurFond, $element[0], $element[1], $s);
+
           }
           ?>
           <?php
+          $s=0;
+          $couleurFondBleu = '#cceeff';
           foreach ($results['residence'] as $element) {
-           printf("<tr><td>Résidence</td><td>%s</td><td>%d</td><td></td></tr>",$element[0],
-                   $element[1]);
+              $s=$s+$element[1];
+           echo sprintf('<tr style="background-color: %s;"><td>Compte</td><td>%s</td><td>%d</td><td>%d</td></tr>', $couleurFondBleu, $element[0], $element[1], $s);
+
           }
           ?>
       </tbody>

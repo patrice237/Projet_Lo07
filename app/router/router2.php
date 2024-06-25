@@ -3,6 +3,7 @@
 <?php
 require ('../controller/ControllerAdministrateur.php');
 require ('../controller/ControllerClient.php');
+require ('../controller/ControllerConnexion.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -31,22 +32,34 @@ switch ($action) {
     case "administrateurReadAll":
     case "compteReadAll":
     case "residenceReadAll":
+    case "patrimoineAccueil":
         ControllerAdministrateur::$action();
         break;
-        
+    case "loginForm":
+    case "inscriptionForm":
+    case "testLogin":
+    case "testInscription":
+        controllerConnexion::$action();
+        break;
     case "compteReadAllC" :
     case "compteAdd":
     case "compteAdded":
     case "compteTransfert":
     case "ResidenceReadAll":
     case "BilanAll":
+    case "transfertCompte":
+    case "transfertcontrol":
+    case "ReadResidence":
+    case "buyResidence":
+    case "validationPaye":
+    case "accueilClient":
         ControllerClient::$action();
         break;
 
 // Tache par défaut
     default:
-        $action = "accueilClient";
-        ControllerClient::$action();
+        $action = "accueil";
+        controllerConnexion::$action();
 }
 
 ?>
