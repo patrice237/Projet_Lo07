@@ -30,6 +30,8 @@ switch ($action) {
     case "compteReadAll":
     case "residenceReadAll":
     case "patrimoineAccueil":
+    case "ameliorationMvc1":
+    case "gestion_patrimoine":
         ControllerAdministrateur::$action();
         break;
     
@@ -54,6 +56,8 @@ switch ($action) {
     case "buyResidence":
     case "validationPaye":
     case "accueilClient":
+    case "generate_pdf":
+    case "ameliorationMvc2":
         ControllerClient::$action();
         break;
 

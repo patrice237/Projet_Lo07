@@ -158,6 +158,16 @@ class ControllerClient {
         }
         require($vue);
     }
+    public static function ameliorationMvc2() {
+        
+        include 'config.php';
+        $vue = $root . 'app/view/Client/viewAmeliorationMvc.php';
+        if (DEBUG) {
+            echo ("ControllerAdministrateur : patrimoineAccueil : vue = $vue");
+        }
+        require($vue);
+        
+    }
 }
 ?>
 <!-- ----- fin ControllerClient -->

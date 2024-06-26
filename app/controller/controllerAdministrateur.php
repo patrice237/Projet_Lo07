@@ -114,6 +114,22 @@ class ControllerAdministrateur {
             require($vue);
         }
     }
+    public static function ameliorationMvc1() {
+        
+        include 'config.php';
+        $vue = $root . '/app/view/Administrateur/viewAmeliorationMvc.php';
+        if (DEBUG) {
+            echo ("ControllerAdministrateur : patrimoineAccueil : vue = $vue");
+        }
+        require($vue);
+        
+    }
+    
+    public static function gestion_patrimoine() {
+        //include 'config.php';
+        $vue = '../model/gestion_patrimoine_clients.php';
+        require($vue);
+    }
 }
 ?>
 <!-- ----- fin ControllerAdministrateur -->
